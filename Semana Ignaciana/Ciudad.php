@@ -1,6 +1,5 @@
-<?php
+<?php	
 	session_start();
-	
 //Conecta con la base de datos ($conexión)
     include 'configdb.php'; //include del archivo con los datos de conexión
 	$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD); //Conecta con la base de datos
@@ -8,7 +7,11 @@
 	//Desactiva errores
 	$controlador = new mysqli_driver();
     $controlador->report_mode = MYSQLI_REPORT_OFF;
-	$ciudad=$_POST["select_ciudades"];
+	
+	$sql="SELECT lugar from maquinas where ip='".$_SESSION["ip"]."';";
+	$resultado=$conexion->query($sql);
+	$fila=$resultado->fetch_array();
+	$ciudad=$fila["lugar"];
 ?>
 <!DOCTYPE html>
 <html class="jesuitas">
@@ -21,7 +24,7 @@
 	</head>
 	<body class="jesuitas">
 		<form action="" method="POST">
-			<h1 class="centrado">Bienvenido a <?php echo $ciudad; ?></h1>
+			<h1 class="centrado">Bienvenido a <?php echo $ciudad; $conexion->close(); ?></h1>
 		</form>
 	</body>
 </html>

@@ -1,4 +1,4 @@
- <?php
+<?php
 	/* Para usar la sesión	*/
 	session_start();
 	
@@ -43,6 +43,7 @@
 							echo '<br>';
 							echo '<h3><a href="Jesuitas.html"> Vuelve a intentarlo</a></h3>';
 						}
+						// $_SESSION["ip"]=$fila["ip"];
 						$conexion->close();
 					?>		
 			</div>
